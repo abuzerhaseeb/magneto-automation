@@ -1,4 +1,4 @@
-package testCases;
+package testBase;
 
 import java.io.File;
 import java.io.FileReader;
@@ -70,8 +70,8 @@ public class BaseTest {
 		}
 
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		driver.get(p.getProperty("appURL"));
 		driver.manage().window().maximize();
 	}

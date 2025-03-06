@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import pageObjects.HomePage;
 import pageObjects.SignInPage;
+import testBase.BaseTest;
 
 public class TC_002_SignInTest extends BaseTest {
 
@@ -27,8 +28,7 @@ public class TC_002_SignInTest extends BaseTest {
 
 			Assert.assertTrue(homePage.getBrowserName().contains(expectedBrowser),
 					"The browser is not " + expectedBrowser);
-			Assert.assertEquals(homePage.getTitle(), "Home Page",
-					"Title does not match");
+			Assert.assertEquals(homePage.getTitle(), "Home Page", "Title does not match");
 			Assert.assertEquals(homePage.getUrl(), "https://magento.softwaretestingboard.com/", "URL does not match");
 
 			homePage.clickSignInOption();

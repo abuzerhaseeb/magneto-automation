@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import pageObjects.CreateAccountPage;
 import pageObjects.HomePage;
+import testBase.BaseTest;
 
 public class TC_001_CreatingAnAccount extends BaseTest {
 
@@ -35,8 +36,8 @@ public class TC_001_CreatingAnAccount extends BaseTest {
 
 			String firstName = createAccountPage.enterFirstName();
 			String lastName = createAccountPage.enterLastName();
-			registeredEmail = createAccountPage.enterEmailAddress(); // Store email
-			registeredPassword = createAccountPage.enterPassword(); // Store password
+			registeredEmail = createAccountPage.enterEmailAddress();
+			registeredPassword = createAccountPage.enterPassword();
 			createAccountPage.clickCreateAnAccountButton();
 
 		} catch (AssertionError e) {
