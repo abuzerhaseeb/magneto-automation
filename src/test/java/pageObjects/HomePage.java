@@ -5,125 +5,82 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.github.javafaker.Faker;
+
 public class HomePage extends BasePage {
 
-	// JavascriptExecutor instance
+	private Faker faker;
 	private JavascriptExecutor js;
 
-	// Constructor
+	@FindBy(xpath = "//div[@class='panel header']//a[normalize-space()='Create an Account']")
+	private WebElement createAnAccountOption;
+
+	@FindBy(id = "firstname")
+	private WebElement firstNameTextBox;
+
+	@FindBy(id = "lastname")
+	private WebElement lastNameTextBox;
+
+	@FindBy(id = "email_address")
+	private WebElement emailAddressTextBox;
+
+	@FindBy(id = "password")
+	private WebElement passwordTextBox;
+
+	@FindBy(id = "password-confirmation")
+	private WebElement confirmPasswordTextBox;
+
+	@FindBy(css = "button[title='Create an Account'] span")
+	private WebElement createAnAccountButton;
+
 	public HomePage(WebDriver driver) {
-		super(driver); // Initialize the WebDriver instance
-		this.js = (JavascriptExecutor) driver; // Initialize the JavascriptExecutor instance
+		super(driver);
+		this.faker = new Faker();
+		this.js = (JavascriptExecutor) driver;
 	}
 
-	// Declare WebElements
-	@FindBy(id = "gh-shop-a")
-	private WebElement shopByCategoryDropdownButton;
-
-	@FindBy(xpath = "//a[text()='Cell phones & accessories']")
-	private WebElement cellPhonesAndAccessoriesOption;
-
-	@FindBy(id = "gh-ac")
-	private WebElement searchBox;
-
-	@FindBy(id = "gh-btn")
-	private WebElement searchButton;
-
-	@FindBy(id = "gh-cat")
-	private WebElement allCategoriesDropdownButton;
-
-	@FindBy(xpath = "//option[text()='Computers/Tablets & Networking']")
-	private WebElement computersTabletAndNetworkingOption;
-
-	// Selects the Cell Phones and Accessories category from the shop by category
-	// dropdown
-	public void clickShopByCategory() {
-		try {
-			shopByCategoryDropdownButton.click();
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-		}
+	public void clickCreateAnAccountOption() {
+		createAnAccountOption.click();
 	}
 
-	public void clickCellPhonesAndAccessoriesOption() {
-		try {
-			cellPhonesAndAccessoriesOption.click();
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-		}
+	public String enterFirstName() {
+		String firstName = faker.name().firstName();
+		firstNameTextBox.sendKeys(firstName);
+		return firstName;
 	}
 
-	// Enters the product name in the search box
-	public void searchProduct(String productName) {
-		try {
-			searchBox.sendKeys(productName);
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-		}
+	public String enterLastName() {
+		String lastName = faker.name().lastName();
+		lastNameTextBox.sendKeys(lastName);
+		return lastName;
 	}
 
-	public void selectAllCategoriesDropdownButton() {
-		try {
-			allCategoriesDropdownButton.click();
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-		}
+	public String enterEmailAddress() {
+		String email = faker.internet().emailAddress();
+		emailAddressTextBox.sendKeys(email);
+		return email;
 	}
 
-	public void selectComputersTabletAndNetworkingOption() {
-		try {
-			computersTabletAndNetworkingOption.click();
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-		}
+	public String enterPassword() {
+		String password = faker.internet().password(8, 16, true, true, true);
+		passwordTextBox.sendKeys(password);
+		confirmPasswordTextBox.sendKeys(password);
+		return password;
 	}
 
-	// Clicks the search button
-	public void clickSearch() {
-		try {
-			searchButton.click();
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-		}
+	public void clickCreateAnAccountButton() {
+		createAnAccountButton.click();
 	}
 
-	// Returns the title of the current web page
 	public String getTitle() {
-		try {
-			return driver.getTitle();
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-			return null;
-		}
+		return driver.getTitle();
 	}
 
-	// Returns the URL of the current web page
 	public String getUrl() {
-		try {
-			return driver.getCurrentUrl();
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-			return null;
-		}
+		return driver.getCurrentUrl();
 	}
 
-	// Returns the name of the browser being used
 	public String getBrowserName() {
-		try {
-			js = (JavascriptExecutor) driver;
-			return (String) js.executeScript("return navigator.userAgent;");
-		} catch (Exception e) {
-			// Log or handle the exception appropriately
-			e.printStackTrace();
-			return null;
-		}
+		return (String) js.executeScript("return navigator.userAgent;");
 	}
 }
