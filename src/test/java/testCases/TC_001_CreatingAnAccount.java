@@ -4,15 +4,20 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pageObjects.CreateAccountPage;
 import pageObjects.HomePage;
 
 public class TC_001_CreatingAnAccount extends BaseTest {
 
 	private HomePage homePage;
+	private CreateAccountPage createAccountPage;
+	public static String registeredEmail;
+	public static String registeredPassword;
 
 	@BeforeMethod(alwaysRun = true)
 	public void setUpPages() {
 		homePage = new HomePage(driver);
+		createAccountPage = new CreateAccountPage(driver);
 	}
 
 	@Test(groups = { "regression", "master" })
@@ -27,11 +32,12 @@ public class TC_001_CreatingAnAccount extends BaseTest {
 			Assert.assertEquals(homePage.getUrl(), "https://magento.softwaretestingboard.com/", "URL does not match");
 
 			homePage.clickCreateAnAccountOption();
-			String firstName = homePage.enterFirstName();
-			String lastName = homePage.enterLastName();
-			String emailAddress = homePage.enterEmailAddress();
-			String password = homePage.enterPassword();
-			homePage.clickCreateAnAccountButton();
+
+			String firstName = createAccountPage.enterFirstName();
+			String lastName = createAccountPage.enterLastName();
+			registeredEmail = createAccountPage.enterEmailAddress(); // Store email
+			registeredPassword = createAccountPage.enterPassword(); // Store password
+			createAccountPage.clickCreateAnAccountButton();
 
 		} catch (AssertionError e) {
 			throw e;
