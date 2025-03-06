@@ -19,8 +19,7 @@ public class TC_002_SignInTest extends BaseTest {
 		signInPage = new SignInPage(driver);
 	}
 
-	@Test(groups = { "regression", "master" }, dependsOnMethods = {
-			"testCases.TC_001_CreatingAnAccount.creatingAnAccount" })
+	@Test(groups = { "master" }, dependsOnMethods = { "testCases.TC_001_CreatingAnAccount.creatingAnAccount" })
 	public void signInTest() {
 
 		try {

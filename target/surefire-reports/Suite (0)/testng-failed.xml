@@ -26,26 +26,4 @@
       </class> <!-- testCases.TC_002_SignInTest -->
     </classes>
   </test> <!-- chrometest(failed) -->
-  <test thread-count="5" name="edgetest(failed)" verbose="0">
-    <parameter name="os" value="Windows"/>
-    <parameter name="browser" value="edge"/>
-    <classes>
-      <class name="testCases.TC_001_CreatingAnAccount">
-        <methods>
-          <include name="setUpPages"/>
-          <include name="creatingAnAccount"/>
-          <include name="setup"/>
-          <include name="tearDown"/>
-        </methods>
-      </class> <!-- testCases.TC_001_CreatingAnAccount -->
-      <class name="testCases.TC_002_SignInTest">
-        <methods>
-          <include name="signInTest"/>
-          <include name="setup"/>
-          <include name="setUpPages"/>
-          <include name="tearDown"/>
-        </methods>
-      </class> <!-- testCases.TC_002_SignInTest -->
-    </classes>
-  </test> <!-- edgetest(failed) -->
 </suite> <!-- Failed suite [Suite (0)] -->

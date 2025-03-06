@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 import com.github.javafaker.Faker;
 
+import pageBase.BasePage;
+
 public class CreateAccountPage extends BasePage {
 
 	private Faker faker;

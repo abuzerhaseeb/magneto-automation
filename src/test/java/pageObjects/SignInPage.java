@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import pageBase.BasePage;
+
 public class SignInPage extends BasePage {
 
 	public SignInPage(WebDriver driver) {

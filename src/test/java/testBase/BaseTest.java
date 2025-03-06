@@ -70,17 +70,17 @@ public class BaseTest {
 		}
 
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
 		driver.get(p.getProperty("appURL"));
 		driver.manage().window().maximize();
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void tearDown() {
-	    if (driver != null) {
-	        driver.quit();
-	    }
+		if (driver != null) {
+			driver.quit();
+		}
 	}
 
 	public String captureScreen(String tname) {
@@ -88,7 +88,8 @@ public class BaseTest {
 			String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 			TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
 			File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-			String targetFilePath = System.getProperty("user.dir") + "\\screenshots\\" + tname + "_" + timeStamp + ".png";
+			String targetFilePath = System.getProperty("user.dir") + "\\screenshots\\" + tname + "_" + timeStamp
+					+ ".png";
 			File targetFile = new File(targetFilePath);
 			sourceFile.renameTo(targetFile);
 			return targetFilePath;
